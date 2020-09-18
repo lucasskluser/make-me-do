@@ -55,10 +55,14 @@ export class UserController {
       throw new NotFoundException(null, 'User not found');
     }
 
-    user.name = body.name;
-    user.email = body.email;
+    if (user.id !== body.id) {
+      throw new BadRequestException(
+        null,
+        'The ID in the request body is different from the one informed in the url',
+      );
+    }
 
-    return this.userService.update(user);
+    return await this.userService.update(body);
   }
 
   @Put('/password')
