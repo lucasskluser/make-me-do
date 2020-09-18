@@ -6,12 +6,9 @@ export class TodoDto {
     title: string;
 }
 
-export class TodoEditDto {
+export class TodoEditDto extends TodoDto {
     @IsUUID()
     id: string;
-
-    @IsString()
-    title: string;
 
     @IsBoolean()
     done: boolean;
