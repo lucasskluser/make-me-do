@@ -12,7 +12,7 @@ export class TodoService {
   ) {}
 
   async get(id: string, user: User): Promise<Todo> {
-    return await this.todoRepository.findOne({ where: { id: id, user: { id: user.id} }});
+    return await this.todoRepository.findOne({ where: { id, user: { id: user.id} }});
   }
 
   async getAll(user: User): Promise<Todo[]> {

@@ -4,9 +4,7 @@ import {
   Column,
   Generated,
   ManyToOne,
-  RelationId,
   CreateDateColumn,
-  JoinColumn,
 } from 'typeorm';
 import { User } from '@modules/user/models/user.entity';
 
@@ -28,9 +26,6 @@ export class Todo {
   @CreateDateColumn()
   updatedAt: Date;
 
-  @Column({ nullable: false, readonly: true })
-  userId: string;
-
   /**
    * Relacionamento many-to-one entre os todos e seu usuário
    */
@@ -38,6 +33,5 @@ export class Todo {
     onDelete: 'RESTRICT',
     cascade: true,
   })
-  @JoinColumn()
   user: User;
 }
