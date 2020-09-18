@@ -74,7 +74,14 @@ export class UserController {
       throw new NotFoundException(null, 'User not found');
     }
 
-    return this.userService.updatePassword(body);
+    if (user.id !== body.id) {
+      throw new BadRequestException(
+        null,
+        'The ID in the request body is different from the one informed in the url',
+      );
+    }
+
+    return await this.userService.updatePassword(body);
   }
 
   @Delete()
