@@ -40,6 +40,7 @@ lerna-debug.log*
 
 # Environment
 environment.*
+!environment.example.*
 *.environment
 *.env
 env.*

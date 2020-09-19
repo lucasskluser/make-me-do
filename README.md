@@ -13,6 +13,8 @@ Make me do é uma API para gerenciamento de tarefas individuais. Os usuários po
 $ npm install
 ```
 
+Para que a aplicação funcione, é necessário definir variáveis de ambiente. Altere o arquivo `environment.ts` para que ele tenha as suas variáveis de ambiente corretas.
+
 ## Iniciando o app
 
 ```bash
