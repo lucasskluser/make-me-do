@@ -24,7 +24,7 @@ export class AuthController {
   constructor(private authService: AuthService) {}
 
   /**
-   * Endpoint para autenticar o usuário
+   * Autentica o usuário, gerando tokens para o usuário
    * @param request Requisição
    * @return Tokens de autenticação
    * @return 401, se os dados estiverem incorretos
@@ -37,7 +37,7 @@ export class AuthController {
   }
 
   /**
-   * Endpoint para reautenticar o usuário
+   * Reautentica o usuário, gerando novos tokens para o usuário
    * @param authorization Cabeçalho de autenticação
    * @param request Requisição
    * @param token Refresh Token
@@ -68,6 +68,11 @@ export class AuthController {
     return refreshToken;
   }
 
+  /**
+   * Deautentica o usuário, revogando todos os tokens gerados para o usuário
+   * @param request Requisição
+   * @returns 204, se todos os tokens foram revogados
+   */
   @Delete()
   @HttpCode(204)
   @UseGuards(JwtAuthGuard)

@@ -83,6 +83,11 @@ export class AuthService {
     }
   }
 
+  /**
+   * Revoga todos os tokens emitidos para uma determinada audiência de um usuário 
+   * @param user Usuário
+   * @param audience Audiência
+   */
   public async logout(user: User, audience: string) {
     await this.tokenService.revokeAccessTokens(user, audience);
     await this.tokenService.revokeRefreshTokens(user, audience);

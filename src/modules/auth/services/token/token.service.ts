@@ -85,6 +85,11 @@ export class TokenService {
     return token;
   }
 
+  /**
+   * Revoga todos os tokens de acesso emitidos para uma audiência de um usuário
+   * @param user Usuário
+   * @param audience Audiência
+   */
   public async revokeAccessTokens(user: User, audience: string) {
     const savedTokens = await this.tokenRepository.find({
       where: {
@@ -97,6 +102,11 @@ export class TokenService {
     await this.tokenRepository.remove(savedTokens);
   }
   
+  /**
+   * Revoga todos os tokens de refresh emitidos para uma audiência de um usuário
+   * @param user Usuário
+   * @param audience Audiência
+   */
   public async revokeRefreshTokens(user: User, audience: string) {
     const savedTokens = await this.tokenRepository.find({
       where: {

@@ -1,10 +1,13 @@
 import { ExtractJwt, Strategy } from 'passport-jwt';
 import { PassportStrategy } from '@nestjs/passport';
 import { Injectable, UnauthorizedException } from '@nestjs/common';
-import { jwtConstants } from '../constants';
 import { UserService } from '@modules/user/services/user/user.service';
 import { TokenService } from '../services/token/token.service';
+import Environment from 'environment';
 
+/**
+ * Estratégia de autenticação com JSON Web Token
+ */
 @Injectable()
 export class JwtStrategy extends PassportStrategy(Strategy) {
   constructor(
@@ -14,12 +17,18 @@ export class JwtStrategy extends PassportStrategy(Strategy) {
     super({
       jwtFromRequest: ExtractJwt.fromAuthHeaderAsBearerToken(),
       ignoreExpiration: false,
-      secretOrKey: jwtConstants.secret,
-      issuer: jwtConstants.issuer,
+      secretOrKey: Environment.JWT_SECRET,
+      issuer: Environment.JWT_ISSUER,
       passReqToCallback:true
     });
   }
 
+  /**
+   * Valida o token do usuário
+   * @param request Requisição
+   * @param payload Payload do JSON Web Token
+   * @returns Dados do usuário do JSON Web Token, se o token for válido
+   */
   async validate(request: any, payload: any) {
     const user = await this.userService.get(payload.sub)
 
