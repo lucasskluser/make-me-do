@@ -18,16 +18,29 @@ import { Todo } from '@modules/todo/models/todo.entity';
 import { TodoDto, TodoEditDto } from '@modules/todo/validations/todo.dto';
 import { JwtAuthGuard } from '@modules/auth/guards/jwt.guard';
 
+/**
+ * Controller de tarefas
+ */
 @Controller('todo')
 @UseGuards(JwtAuthGuard)
 export class TodoController {
   constructor(private todoService: TodoService) {}
 
+  /**
+   * Retorna todas as tarefas do usuário autenticado
+   * @param req Requisição
+   */
   @Get()
   async getAll(@Request() req: any): Promise<Todo[]> {
     return await this.todoService.getAll(req.user);
   }
 
+  /**
+   * Retorna uma tarefa pelo ID
+   * @param req Requisição
+   * @param id ID da tarefa
+   * @throws `NotFoundException`, se a tarefa não for encontrada
+   */
   @Get('/:id')
   async get(@Request() req: any, @Param('id') id: string) {
     const todo = await this.todoService.get(id, req.user);
@@ -39,12 +52,26 @@ export class TodoController {
     return todo;
   }
 
+  /**
+   * Cria uma tarefa
+   * @param req Requisição
+   * @param body Dados da tarefa
+   * @returns Tarefa criada
+   */
   @Post()
   @HttpCode(201)
   async create(@Request() req: any, @Body() body: TodoDto): Promise<Todo> {
     return await this.todoService.create(body, req.user);
   }
 
+  /**
+   * Atualiza uma tarefa
+   * @param req Requisição
+   * @param id ID da tarefa
+   * @param body Dados da tarefa
+   * @throws `BadRequestException`, se o ID no corpo da requisição for diferente do ID na URL
+   * @returns Tarefa atualizada
+   */
   @Put('/:id')
   @HttpCode(200)
   async put(
@@ -68,6 +95,13 @@ export class TodoController {
     return await this.todoService.update(body, req.user);
   }
 
+  /**
+   * Deleta uma tarefa pelo ID
+   * @param req Requisição
+   * @param id ID da tarefa
+   * @throws `NotFoundException`, se a tarefa não for encontrada
+   * @throws `InternalServerErrorException`, se não for possível deletar a tarefa
+   */
   @Delete('/:id')
   @HttpCode(204)
   async delete(@Request() req: any, @Param('id') id: string) {
