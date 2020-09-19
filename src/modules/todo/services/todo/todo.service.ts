@@ -65,7 +65,7 @@ export class TodoService {
    * @returns Verdadeiro, se a tarefa for deletada e falso em outros casos
    */
   async delete(todoId: string, user: User): Promise<boolean> {
-    let todo = await this.get(todoId, user);
+    const todo = await this.get(todoId, user);
 
     if (!todo) {
       return false;

@@ -13,7 +13,6 @@ import {
 import { LocalAuthGuard } from '@modules/auth/guards/local.guard';
 import { AuthService } from '@modules/auth/services/auth/auth.service';
 import { RefreshTokenDto } from '@modules/auth/validations/refreshToken.dto';
-import { Console } from 'console';
 import { JwtAuthGuard } from '@modules/auth/guards/jwt.guard';
 
 /**

@@ -48,7 +48,7 @@ export class Todo {
   /**
    * Relacionamento many-to-one entre as tarefas e seu usuário
    */
-  @ManyToOne(type => User, {
+  @ManyToOne(() => User, {
     onDelete: 'RESTRICT',
     cascade: true,
   })

@@ -70,7 +70,7 @@ export class Token {
   /**
    * Relacionamento many-to-one entre os tokens e seu usuário
    */
-  @ManyToOne(type => User, {
+  @ManyToOne(() => User, {
     onDelete: 'RESTRICT',
     cascade: true,
   })
