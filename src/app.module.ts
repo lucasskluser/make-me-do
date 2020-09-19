@@ -4,6 +4,12 @@ import { TodoModule } from '@modules/todo/todo.module';
 import { UserModule } from '@modules/user/user.module';
 import { AuthModule } from './modules/auth/auth.module';
 
+/**
+ * App Module
+ * 
+ * Imports submodules and defines the main providers
+ * of the application
+ */
 @Module({
   imports: [
     TypeOrmModule.forRoot({
