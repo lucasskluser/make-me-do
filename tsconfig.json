@@ -11,8 +11,20 @@
     "outDir": "./dist",
     "baseUrl": "./src",
     "paths": {
-      "@modules/*": [
-        "modules/*"
+      "@src/*": [
+        "./*"
+      ],
+      "@app/*": [
+        "app/modules/*"
+      ],
+      "@auth/*": [
+        "app/modules/auth/*"
+      ],
+      "@todo/*": [
+        "app/modules/todo/*"
+      ],
+      "@user/*": [
+        "app/modules/user/*"
       ]
     },
     "incremental": true
